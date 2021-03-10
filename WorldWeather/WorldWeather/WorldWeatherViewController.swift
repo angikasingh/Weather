@@ -108,7 +108,7 @@ class WorldWeatherViewController: UIViewController, CLLocationManagerDelegate {
             }
             
             self.viewModel.getOneDayConditions(oneDayForecastURL).done { oneDay in
-                self.lblHighLow.text = "H: \(oneDay.maxTemp)° L: \(oneDay.minTemp)°"
+                self.lblHighLow.text = "H: \(oneDay.dayTemp)° L: \(oneDay.nightTemp)°"
                 
             }.catch { error in
                 print("Error in getting one day forecast conditions \(error.localizedDescription)")

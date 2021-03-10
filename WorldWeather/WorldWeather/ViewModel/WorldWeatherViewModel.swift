@@ -62,8 +62,8 @@ class WorldWeatherViewModel{
                 
                 let dayForecast = ModelOneDayForecast()
                 dayForecast.headlineText = json["Headline"]["Text"].stringValue
-                dayForecast.minTemp = json["DailyForecasts"][0]["Temperature"]["Minimum"]["Value"].intValue
-                dayForecast.maxTemp = json["DailyForecasts"][0]["Temperature"]["Maximum"]["Value"].intValue
+                dayForecast.nightTemp = json["DailyForecasts"][0]["Temperature"]["Minimum"]["Value"].intValue
+                dayForecast.dayTemp = json["DailyForecasts"][0]["Temperature"]["Maximum"]["Value"].intValue
                 dayForecast.dayIcon = json["DailyForecasts"][0]["Day"]["Icon"].intValue
                 dayForecast.nightIcon = json["DailyForecasts"][0]["Night"]["Icon"].intValue
                 dayForecast.dayIconPhrase = json["DailyForecasts"][0]["Day"]["IconPhrase"].stringValue
