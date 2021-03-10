@@ -8,3 +8,8 @@
 
 
 "hello_world" = "Hola Mundo";
+"world_weather" = "Clima mundial";
+"str_city" = "Ciudad: --";
+"str_condition" = "Condición: --";
+"str_temperature" = "La temperatura: --";
+"str_high_low" = "Alta: -- Baja: --";

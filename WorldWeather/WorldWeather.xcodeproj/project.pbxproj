@@ -16,6 +16,8 @@
 		757BB76C25F67F7F0049D5EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 757BB76A25F67F7F0049D5EE /* LaunchScreen.storyboard */; };
 		758A5F1B25F86EE900F27315 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 758A5F1D25F86EE900F27315 /* Localizable.strings */; };
 		758A5F2425F86FA700F27315 /* LocalizationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758A5F2325F86FA700F27315 /* LocalizationUtil.swift */; };
+		758A5F2825F8735500F27315 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758A5F2725F8735500F27315 /* Constants.swift */; };
+		758A5F2B25F8794900F27315 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758A5F2A25F8794900F27315 /* Services.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		758A5F2025F86EF100F27315 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		758A5F2125F86F4100F27315 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		758A5F2325F86FA700F27315 /* LocalizationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationUtil.swift; sourceTree = "<group>"; };
+		758A5F2725F8735500F27315 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		758A5F2A25F8794900F27315 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		C3F33F1283AAE89030F64A1A /* Pods-WorldWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorldWeather.debug.xcconfig"; path = "Target Support Files/Pods-WorldWeather/Pods-WorldWeather.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				758A5F2325F86FA700F27315 /* LocalizationUtil.swift */,
+				758A5F2725F8735500F27315 /* Constants.swift */,
+				758A5F2A25F8794900F27315 /* Services.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -236,6 +242,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				758A5F2825F8735500F27315 /* Constants.swift in Sources */,
+				758A5F2B25F8794900F27315 /* Services.swift in Sources */,
 				758A5F2425F86FA700F27315 /* LocalizationUtil.swift in Sources */,
 				757BB76425F67F7F0049D5EE /* ViewController.swift in Sources */,
 				757BB76025F67F7F0049D5EE /* AppDelegate.swift in Sources */,

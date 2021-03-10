@@ -6,7 +6,11 @@
 //
 
 import UIKit
-
+import CoreLocation
+import Alamofire
+import SwiftSpinner
+import SwiftyJSON
+import PromiseKit
 
 /*
  Localization Steps:
@@ -30,19 +34,50 @@ import UIKit
  
  */
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
 
+    @IBOutlet weak var lblCity: UILabel!
     
+    @IBOutlet weak var lblCondition: UILabel!
     
-    @IBOutlet weak var lblHelloWorld: UILabel!
+    @IBOutlet weak var lblTemperature: UILabel!
+    
+    @IBOutlet weak var lblHighLow: UILabel!
+    
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeText()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
     }
     
     func initializeText(){
-        lblHelloWorld.text = strHelloWorld
+        self.title = strHelloWorld
+        lblCity.text = strCity
+        lblCondition.text = strCondition
+        lblTemperature.text = strTemperature
+        lblHighLow.text = strHighLow
+    }
+    
+    //MARK: Location Manager functions
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        if let currLocation = locations.last{
+            
+            let lat = currLocation.coordinate.latitude
+            let lng = currLocation.coordinate.longitude
+            
+            print(lat)
+            print(lng)
+            
+        }
     }
 
 
