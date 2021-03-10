@@ -34,7 +34,7 @@ import PromiseKit
  
  */
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class WorldWeatherViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var lblCity: UILabel!
     
@@ -45,6 +45,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var lblHighLow: UILabel!
     
     let locationManager = CLLocationManager()
+    
+    // We need to have a class of View Model
+    let viewModel = WorldWeatherViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,10 +79,44 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             print(lat)
             print(lng)
-            
+            updateWeatherData(lat, lng)
         }
     }
-
-
+    
+    
+    //MARK: Update the weather from ViewModel
+    
+    func updateWeatherData(_ lat : CLLocationDegrees, _ lng : CLLocationDegrees){
+        
+        let cityDataURL = getLocationURL(lat, lng)
+        
+        viewModel.getCityData(cityDataURL).done { city in
+            // Update City Name
+            self.lblCity.text = city.cityName
+            
+            let key = city.cityKey
+            
+            let currentConditionURL = getCurrentConditionURL(key)
+            let oneDayForecastURL = getOneDayURL(key)
+            
+            
+            self.viewModel.getCurrentConditions(currentConditionURL).done { currCondition in
+                self.lblCondition.text = currCondition.weatherText
+                self.lblTemperature.text =  "\(currCondition.imperialTemp)°"
+            }.catch { error in
+                print("Error in getting current conditions \(error.localizedDescription)")
+            }
+            
+            self.viewModel.getOneDayConditions(oneDayForecastURL).done { oneDay in
+                self.lblHighLow.text = "H: \(oneDay.maxTemp)° L: \(oneDay.minTemp)°"
+                
+            }.catch { error in
+                print("Error in getting one day forecast conditions \(error.localizedDescription)")
+            }
+        }
+        .catch { error in
+            print("Error in getting City Data \(error.localizedDescription)")
+        }
+    }
 }
 
