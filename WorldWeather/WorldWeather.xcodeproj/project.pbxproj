@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08191AC5260423C700B9E686 /* ModelForecacst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08191AC4260423C700B9E686 /* ModelForecacst.swift */; };
+		08191ACC2604360E00B9E686 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08191ACA2604360E00B9E686 /* TableViewCell.swift */; };
+		08191ACD2604360E00B9E686 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08191ACB2604360E00B9E686 /* TableViewCell.xib */; };
 		1C26C6B6C7CEBD9C6E9F6038 /* Pods_WorldWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E53F87A0FC0BCFBA4D5575B /* Pods_WorldWeather.framework */; };
 		757BB76025F67F7F0049D5EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757BB75F25F67F7F0049D5EE /* AppDelegate.swift */; };
 		757BB76225F67F7F0049D5EE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757BB76125F67F7F0049D5EE /* SceneDelegate.swift */; };
@@ -26,6 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08191AC4260423C700B9E686 /* ModelForecacst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelForecacst.swift; sourceTree = "<group>"; };
+		08191ACA2604360E00B9E686 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		08191ACB2604360E00B9E686 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		0E53F87A0FC0BCFBA4D5575B /* Pods_WorldWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorldWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A8314B865C35B03EE285F99 /* Pods-WorldWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorldWeather.release.xcconfig"; path = "Target Support Files/Pods-WorldWeather/Pods-WorldWeather.release.xcconfig"; sourceTree = "<group>"; };
 		7563AFDD25F86D240004DB9B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
@@ -94,6 +100,8 @@
 				757BB75F25F67F7F0049D5EE /* AppDelegate.swift */,
 				757BB76125F67F7F0049D5EE /* SceneDelegate.swift */,
 				757BB76325F67F7F0049D5EE /* WorldWeatherViewController.swift */,
+				08191ACA2604360E00B9E686 /* TableViewCell.swift */,
+				08191ACB2604360E00B9E686 /* TableViewCell.xib */,
 				757BB76525F67F7F0049D5EE /* Main.storyboard */,
 				757BB76825F67F7F0049D5EE /* Assets.xcassets */,
 				757BB76A25F67F7F0049D5EE /* LaunchScreen.storyboard */,
@@ -127,6 +135,7 @@
 				758A5F2E25F87D1200F27315 /* ModelCity.swift */,
 				758A5F3825F8812400F27315 /* ModelCurrentCondition.swift */,
 				758A5F3B25F884AD00F27315 /* ModelOneDayForecast.swift */,
+				08191AC4260423C700B9E686 /* ModelForecacst.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -218,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				757BB76C25F67F7F0049D5EE /* LaunchScreen.storyboard in Resources */,
+				08191ACD2604360E00B9E686 /* TableViewCell.xib in Resources */,
 				758A5F1B25F86EE900F27315 /* Localizable.strings in Resources */,
 				757BB76925F67F7F0049D5EE /* Assets.xcassets in Resources */,
 				757BB76725F67F7F0049D5EE /* Main.storyboard in Resources */,
@@ -273,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08191ACC2604360E00B9E686 /* TableViewCell.swift in Sources */,
 				758A5F3C25F884AD00F27315 /* ModelOneDayForecast.swift in Sources */,
 				758A5F2825F8735500F27315 /* Constants.swift in Sources */,
 				758A5F2B25F8794900F27315 /* Services.swift in Sources */,
@@ -283,6 +294,7 @@
 				758A5F3F25F8877B00F27315 /* UtilFunctions.swift in Sources */,
 				757BB76025F67F7F0049D5EE /* AppDelegate.swift in Sources */,
 				757BB76225F67F7F0049D5EE /* SceneDelegate.swift in Sources */,
+				08191AC5260423C700B9E686 /* ModelForecacst.swift in Sources */,
 				758A5F2F25F87D1200F27315 /* ModelCity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

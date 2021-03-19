@@ -78,4 +78,41 @@ class WorldWeatherViewModel{
             
         }
     }
+    
+    func getFiveDayConditions(_ url : String) -> Promise<[ModelForecast]>{
+        return Promise<[ModelForecast]> { seal -> Void in
+            
+            getAFResponseJSON(url).done { json in
+                
+                var forecasts:[ModelForecast]  = [ModelForecast]()
+                
+                guard let dailyForecasts = json["DailyForecasts"].array else {
+                    return seal.fulfill([ModelForecast]())
+                }
+                
+                for dailyForecast in dailyForecasts {
+                    let forecast = ModelForecast()
+                    
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ'"
+                    let date = formatter.date(from: dailyForecast["Date"].stringValue)
+                    
+                    forecast.dayOfWeek = formatter.weekdaySymbols[Calendar.current.component(.weekday, from: date!) - 1]
+                    forecast.maxTemp = dailyForecast["Temperature"]["Maximum"]["Value"].intValue
+                    forecast.minTemp = dailyForecast["Temperature"]["Minimum"]["Value"].intValue
+                    forecast.dayIcon = dailyForecast["Day"]["Icon"].intValue
+                    forecast.nightIcon = dailyForecast["Night"]["Icon"].intValue
+                    
+                    forecasts.append(forecast)
+                }
+                
+                seal.fulfill(forecasts)
+            
+            }
+            .catch { error in
+                seal.reject(error)
+            }
+            
+        }
+    }
 }

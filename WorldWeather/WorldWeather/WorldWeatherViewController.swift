@@ -34,7 +34,7 @@ import PromiseKit
  
  */
 
-class WorldWeatherViewController: UIViewController, CLLocationManagerDelegate {
+class WorldWeatherViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var lblCity: UILabel!
     
@@ -42,12 +42,24 @@ class WorldWeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var lblTemperature: UILabel!
     
-    @IBOutlet weak var lblHighLow: UILabel!
+    @IBOutlet weak var currentIcon: UIImageView!
+    
+    @IBOutlet weak var lblHigh: UILabel!
+    
+    @IBOutlet weak var lblLow: UILabel!
+    
+    @IBOutlet weak var highIcon: UIImageView!
+    
+    @IBOutlet weak var lowIcon: UIImageView!
+    
+    @IBOutlet weak var table: UITableView!
     
     let locationManager = CLLocationManager()
     
     // We need to have a class of View Model
     let viewModel = WorldWeatherViewModel()
+    
+    var forecasts: [ModelForecast] = [ModelForecast]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +74,27 @@ class WorldWeatherViewController: UIViewController, CLLocationManagerDelegate {
         lblCity.text = strCity
         lblCondition.text = strCondition
         lblTemperature.text = strTemperature
-        lblHighLow.text = strHighLow
+        lblHigh.text = strHighLow
+        lblLow.text = strHighLow
+        
+        table.delegate = self
+        table.dataSource = self
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return forecasts.count
+    }
+
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = Bundle.main.loadNibNamed("TableViewCell", owner: self, options: nil)?.first as! TableViewCell
+        cell.lblDayOfWeek.text = forecasts[indexPath.row].dayOfWeek
+        cell.lblMaxTemp.text = "\(forecasts[indexPath.row].maxTemp) °"
+        cell.lblMinTemp.text = "\(forecasts[indexPath.row].minTemp) °"
+        cell.dayIcon.image = UIImage(named: "\(forecasts[indexPath.row].dayIcon)-s")
+        cell.nightIcon.image = UIImage(named: "\(forecasts[indexPath.row].nightIcon)-s")
+        return cell
     }
     
     //MARK: Location Manager functions
@@ -98,20 +130,31 @@ class WorldWeatherViewController: UIViewController, CLLocationManagerDelegate {
             
             let currentConditionURL = getCurrentConditionURL(key)
             let oneDayForecastURL = getOneDayURL(key)
+            let fiveDayForecastURL = getFiveDayURL(key)
             
             
             self.viewModel.getCurrentConditions(currentConditionURL).done { currCondition in
                 self.lblCondition.text = currCondition.weatherText
                 self.lblTemperature.text =  "\(currCondition.imperialTemp)°"
+                self.currentIcon.image = UIImage(named: "\(currCondition.weatherIcon)-s")
             }.catch { error in
                 print("Error in getting current conditions \(error.localizedDescription)")
             }
             
             self.viewModel.getOneDayConditions(oneDayForecastURL).done { oneDay in
-                self.lblHighLow.text = "H: \(oneDay.dayTemp)° L: \(oneDay.nightTemp)°"
-                
+                self.lblHigh.text = "H: \(oneDay.dayTemp)°"
+                self.lblLow.text = "L: \(oneDay.nightTemp)°"
+                self.highIcon.image = UIImage(named: "\(oneDay.dayIcon)-s")
+                self.lowIcon.image = UIImage(named: "\(oneDay.nightIcon)-s")
             }.catch { error in
                 print("Error in getting one day forecast conditions \(error.localizedDescription)")
+            }
+            
+            self.viewModel.getFiveDayConditions(fiveDayForecastURL).done { forecasts in
+                self.forecasts = forecasts
+                self.table.reloadData()
+            }.catch { error in
+                print("Error in getting five day forecast conditions \(error.localizedDescription)")
             }
         }
         .catch { error in

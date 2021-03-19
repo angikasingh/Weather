@@ -28,3 +28,10 @@ func getOneDayURL(_ cityKey : String) -> String {
     url.append("?apikey=\(apiKey)")
     return url
 }
+
+func getFiveDayURL(_ cityKey : String) -> String {
+    var url = fiveDayURL
+    url.append(cityKey)
+    url.append("?apikey=\(apiKey)")
+    return url
+}
